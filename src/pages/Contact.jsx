@@ -68,10 +68,9 @@ export default function Contact() {
   const quickLinks = [
     { img: githubLogo, title: "GitHub", link: "https://github.com/geeked-aadi" },
     { img: linkedinLogo, title: "LinkedIn", link: "https://www.linkedin.com/in/aditya-aradhya-tm-9720b5204/" },
-    { img: gmailLogo, title: "Email", link: "mailto:adityaradhyatm@gmail.com" },
-    { img: whatsappLogo, title: "WhatsApp", link: "https://wa.me/919886634901" },
+    { img: gmailLogo, title: "Email", link: `mailto:${import.meta.env.VITE_CONTACT_EMAIL}` },
+    { img: whatsappLogo, title: "WhatsApp", link: `https://wa.me/${import.meta.env.VITE_WHATSAPP_NUMBER}` },
     { img: instagramLogo, title: "Instagram", link: "https://www.instagram.com/stopyellingaadi/" },
-    
   ];
 
   return (

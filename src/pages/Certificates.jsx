@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 const CERTS = {
   tech: [
     {
-      title: "Responsive Website ",
+      title: "Responsive Website",
       org: "NxtWave",
       date: "2025",
       img: "/certs/responsiveWeb.svg",

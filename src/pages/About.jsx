@@ -68,7 +68,7 @@ const AboutMe = () => {
         </p>
 
         <p style={{ fontSize: "1.1rem", color: "rgba(255,255,255,0.8)" }}>
-            2nd-year B.Tech Computer Science Engineering student with hands-on experience in Automation. Proficient in Python, SQLite, Flask, JavaScript and Task automation. Seeking internship opportunities to apply skills and contribute to impactful AI solutions.
+          2nd-year B.Tech Computer Science Engineering student with hands-on experience in Automation. Proficient in Python, SQLite, Flask, JavaScript and Task automation. Seeking internship opportunities to apply skills and contribute to impactful AI solutions.
         </p>
 
         {/* --- Education Section --- */}

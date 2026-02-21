@@ -56,12 +56,7 @@ const AboutMe = () => {
             marginBottom: "1rem",
           }}
         >
-          Hi, I’m <strong>Kunj Desai</strong> — an aspiring{" "}
-          <strong>Artificial Intelligence Engineer</strong> and{" "}
-          <strong>Machine Learning enthusiast</strong> who loves turning ideas
-          into intelligent systems. I’m deeply fascinated by how data and
-          algorithms can shape the future of healthcare, automation, and
-          creativity in technology.
+          Hi, I’m <strong>Aditya Aradhya</strong> — a <strong>Computer Science Engineer</strong> fascinated by algorithms, data-driven systems, and the engineering behind intelligent technology.
         </p>
 
         <p style={{ fontSize: "1.1rem", color: "rgba(255,255,255,0.8)" }}>
@@ -72,9 +67,8 @@ const AboutMe = () => {
           that not only perform — but also inspire.
         </p>
 
-        <p>
-            4th-year B.Tech AI Engineering student with hands-on experience in ML & DL Projects. Proficient in Python, scikitlearn,pytorch,tensorflow and data preprocessing. Seeking internship opportunities to apply skills and contribute to
-            impactful AI solutions.
+        <p style={{ fontSize: "1.1rem", color: "rgba(255,255,255,0.8)" }}>
+            2nd-year B.Tech Computer Science Engineering student with hands-on experience in Automation. Proficient in Python, SQLite, Flask, JavaScript and Task automation. Seeking internship opportunities to apply skills and contribute to impactful AI solutions.
         </p>
 
         {/* --- Education Section --- */}
@@ -131,7 +125,7 @@ const AboutMe = () => {
                     fontSize: "1.25rem",
                   }}
                 >
-                  B.Tech in Artificial Intelligence and Data Science
+                  B.Tech in Computer Science
                 </h4>
                 <p
                   style={{
@@ -139,13 +133,13 @@ const AboutMe = () => {
                     marginBottom: "0.2rem",
                   }}
                 >
-                  <strong>S.C.E.T (Sarvajanik University)</strong> — Surat,
-                  Gujarat
+                  <strong>B.I.E.T (Bapuji Institute of Engineering and Technology)</strong> — Davangere,
+                  Karnataka
                 </p>
                 <p style={{ color: "rgba(255,255,255,0.7)" }}>
-                  4th Year (Pursuing) | GPA: 9.0
+                  2nd Year (Pursuing) | GPA: 8.5
                 </p>
-                <p style={{ color: "rgba(255,255,255,0.7)" }}>2022 – 2026</p>
+                <p style={{ color: "rgba(255,255,255,0.7)" }}>2024 – 2028</p>
               </div>
             </motion.div>
 
@@ -184,13 +178,12 @@ const AboutMe = () => {
                     marginBottom: "0.2rem",
                   }}
                 >
-                  <strong>R.S.M. Poonawala Experimental School</strong> — Ambika
-                  Niketan, Surat
+                  <strong>Vidhvath Academy of Science</strong> — Davangere, Karnataka
                 </p>
                 <p style={{ color: "rgba(255,255,255,0.7)" }}>
-                  Gujarat Board | Percentage: 78%
+                  Karnataka Board | Percentage: 94.5%
                 </p>
-                <p style={{ color: "rgba(255,255,255,0.7)" }}>Completed in 2022</p>
+                <p style={{ color: "rgba(255,255,255,0.7)" }}>Completed in 2024</p>
               </div>
             </motion.div>
 
@@ -229,13 +222,13 @@ const AboutMe = () => {
                     marginBottom: "0.2rem",
                   }}
                 >
-                  <strong>R.S.M. Poonawala Experimental School</strong> — Surat,
-                  Gujarat
+                  <strong>B.E.A Higher Primary School</strong> — Davangere,
+                  Karnataka
                 </p>
                 <p style={{ color: "rgba(255,255,255,0.7)" }}>
-                  Gujarat Board | Percentage: 69%
+                  CBSE Board | Percentage: 85.2%
                 </p>
-                <p style={{ color: "rgba(255,255,255,0.7)" }}>Completed in 2020</p>
+                <p style={{ color: "rgba(255,255,255,0.7)" }}>Completed in 2022</p>
               </div>
             </motion.div>
           </div>

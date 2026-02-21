@@ -1,53 +1,54 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-// ✅ Certificates data (added URLs for View button)
+//  Certificates data (added URLs for View button)
 const CERTS = {
   tech: [
     {
-      title: "Flipkart Hackathon",
-      org: "Flipkart",
-      date: "2022",
-      img: "/certs/flipkart.jpg",
-      link: "/certs/flipkart.jpg",
-    },
-    {
-      title: "Solution Challenge",
-      org: "Google Developers",
-      date: "2023",
-      img: "/certs/hack2skill.png",
-      link: "/certs/hack2skill.png",
-    },
-    {
-      title: "ADira",
-      org: "SCET AI Club",
+      title: "Responsive Website ",
+      org: "NxtWave",
       date: "2025",
-      img: "/certs/adira.png",
-      link: "/certs/adira.png",
+      img: "/certs/responsiveWeb.svg",
+      link: "https://certificates.ccbp.in/academy/build-your-own-responsive-website?id=KRVSVAOTWS",
+    },
+    {
+      title: "Introduction to Databases",
+      org: "NxtWave",
+      date: "2025",
+      img: "/certs/databases.svg",
+      link: "https://certificates.ccbp.in/academy/introduction-to-databases?id=GSGUNKHDGT",
+    },
+    {
+      title: "Static Website",
+      org: "NxtWave",
+      date: "2025",
+      img: "/certs/staticWeb.svg",
+      link: "https://certificates.ccbp.in/academy/static-website?id=LYZQRKFDPN",
+    },
+    {
+      title: "Code Fest",
+      org: "BIET",
+      date: "2025",
+      img: "/certs/codeFest.svg",
+      link: "/certs/cert1.svg",
+    },
+    {
+      title: "Code Quest",
+      org: "BIET",
+      date: "2025",
+      img: "/certs/codeQuest.svg",
+      link: "/certs/codeQuest.svg",
     },
   ],
   other: [
     {
-      title: "codathon",
-      org: "SCET tech fest",
+      title: "Cipher Chase",
+      org: "BIET",
       date: "2025",
-      img: "/certs/codathon.png",
-      link: "/certs/codathon.png",
+      img: "/certs/cipherChase.svg",
+      link: "/certs/cipherChase.png",
     },
-    {
-      title: "bugbuzz",
-      org: "SCET tech fest",
-      date: "2025",
-      img: "/certs/bugbuzz.png",
-      link: "/certs/bugbuzz.png",
-    },
-    {
-      title: "Dataloom",
-      org: "SCET",
-      date: "2024",
-      img: "/certs/dataloom.png",
-      link: "/certs/dataloom.png",
-    },
+    
   ],
 };
 
@@ -176,20 +177,47 @@ export default function Certificates() {
             }}
             onClick={() => setSelectedCert(null)}
           >
-            <motion.img
-              src={selectedCert.img}
-              alt={selectedCert.title}
-              initial={{ scale: 0.8 }}
-              animate={{ scale: 1 }}
-              exit={{ scale: 0.8 }}
+            <div
               style={{
-                maxWidth: "90%",
-                maxHeight: "85%",
-                borderRadius: 10,
-                boxShadow: "0 0 25px rgba(255,255,255,0.2)",
+                display: "flex",
+                flexDirection: "column",
+                gap: "12px",
+                alignItems: "center",
               }}
               onClick={(e) => e.stopPropagation()}
-            />
+            >
+              <motion.img
+                src={selectedCert.img}
+                alt={selectedCert.title}
+                initial={{ scale: 0.8 }}
+                animate={{ scale: 1 }}
+                exit={{ scale: 0.8 }}
+                style={{
+                  maxWidth: "90%",
+                  maxHeight: "75%",
+                  borderRadius: 10,
+                  boxShadow: "0 0 25px rgba(255,255,255,0.2)",
+                }}
+              />
+              {selectedCert.link && selectedCert.link.startsWith("http") && (
+                <a
+                  href={selectedCert.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    background: "#007bff",
+                    color: "white",
+                    padding: "8px 16px",
+                    borderRadius: "6px",
+                    textDecoration: "none",
+                    fontWeight: "500",
+                    cursor: "pointer",
+                  }}
+                >
+                  View Verification
+                </a>
+              )}
+            </div>
           </motion.div>
         )}
       </AnimatePresence>

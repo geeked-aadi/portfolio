@@ -4,7 +4,6 @@ import Home from './pages/Home'
 import Projects from './pages/Projects'
 import Gallery from './pages/Gallery'
 import Certificates from './pages/Certificates'
-import Blog from './pages/Blog'
 import Resume from './pages/Resume'
 import About from './pages/About'
 import Contact from './pages/Contact'
@@ -20,15 +19,15 @@ export default function App() {
           <Home />
         </section>
 
-        {/* Projects Section */}
+        {/* Projects Section
         <section id="projects">
           <Projects />
-        </section>
+        </section> */}
 
-        {/* Gallery Section */}
+        {/* Gallery Section
         <section id="gallery">
           <Gallery />
-        </section>
+        </section> */}
 
         {/* Skills Section */}
         <section id="skills">
@@ -40,15 +39,10 @@ export default function App() {
           <Certificates />
         </section>
 
-        {/* Blog Section */}
-        <section id="blog">
-          <Blog />
-        </section>
-
-        {/* Resume Section */}
+        {/* Resume Section
         <section id="resume">
           <Resume />
-        </section>
+        </section> */}
 
         {/* About Section */}
         <section id="about">
@@ -61,7 +55,7 @@ export default function App() {
         </section>
       </main>
       <footer className="footer" style={{ marginTop: '3rem' }}>
-        © {new Date().getFullYear()} Kunj Desai — Built with React
+        © {new Date().getFullYear()} Aditya Aradhya — Built with React
       </footer>
     </div>
   )

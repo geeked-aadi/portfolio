@@ -121,60 +121,48 @@ export default function Navbar() {
           }}
         >
           {links.map((l) => (
-            <button
+            <motion.button
               key={l.to}
               onClick={() => scrollToSection(l.to)}
+              whileHover={{
+                scale: 1.1,
+                color: "var(--accent)",
+                textShadow: "0 0 8px var(--accent)",
+              }}
+              transition={{ duration: 0.3 }}
               style={{
                 position: "relative",
                 fontSize: "0.95rem",
                 textDecoration: "none",
-                color: "white",
+                color: activeSection === l.to ? "var(--accent)" : "white",
                 fontWeight: 500,
                 background: "none",
                 border: "none",
                 cursor: "pointer",
                 padding: 0,
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
               }}
             >
-              {({ isActive }) => (
+              {l.label}
+              {activeSection === l.to && (
                 <motion.div
-                  whileHover={{
-                    scale: 1.1,
-                    color: "var(--accent)",
-                    textShadow: "0 0 8px var(--accent)",
-                  }}
+                  layoutId="underline"
+                  initial={{ opacity: 0, y: 5 }}
+                  animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.3 }}
                   style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "center",
+                    width: "70%",
+                    height: "2px",
+                    marginTop: "4px",
+                    borderRadius: "1px",
+                    backgroundColor: "var(--accent)",
+                    boxShadow: "0 0 6px var(--accent)",
                   }}
-                >
-                  <motion.span
-                    animate={{ color: activeSection === l.to ? "var(--accent)" : "white" }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    {l.label}
-                  </motion.span>
-                  {activeSection === l.to && (
-                    <motion.div
-                      layoutId="underline"
-                      initial={{ opacity: 0, y: 5 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.3 }}
-                      style={{
-                        width: "70%",
-                        height: "2px",
-                        marginTop: "4px",
-                        borderRadius: "1px",
-                        backgroundColor: "var(--accent)",
-                        boxShadow: "0 0 6px var(--accent)",
-                      }}
-                    />
-                  )}
-                </motion.div>
+                />
               )}
-            </button>
+            </motion.button>
           ))}
         </div>
 

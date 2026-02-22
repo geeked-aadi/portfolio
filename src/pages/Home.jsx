@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { motion } from 'framer-motion'
 import "../CSS/Home.css"
 import '../index.css' 
@@ -14,6 +14,7 @@ import instagramLogo from '../../public/insta.png'
 import facebookLogo from '../../public/facebook.png'
 
 export default function Home() {
+  const [typingDone, setTypingDone] = useState(false);
   const professions = [
   'Computer Science Engineer',
   'Problem Solver',
@@ -33,13 +34,7 @@ export default function Home() {
 
   return (
     <section className="home-section">
-      {/* Typing Effect Styles */}
-      <style>
-        {`
-          @keyframes typing { from { width: 0; } to { width: 100%; } }
-          @keyframes blink { 50% { border-color: transparent; } }
-        `}
-      </style>
+      {/* Typing Effect Styles (moved to CSS file) */}
 
       {/* Top Section: Photo + Info */}
       <div className="home-top">
@@ -90,8 +85,15 @@ export default function Home() {
           </h1>
 
           {/* Typing Animated Text */}
+          {/** Use an inner span and a CSS variable with the character count so the caret sits after the final character */}
           <p className="typing-effect">
-            Computer Science Engineer | Fullstack Developer | Tech Explorer
+            <span
+              className={"typing-inner" + (typingDone ? " typing-done" : "")}
+              style={{ ['--chars']: ("Computer Science Engineer | Fullstack Developer | Tech Explorer").length }}
+              onAnimationEnd={() => setTypingDone(true)}
+            >
+              Computer Science Engineer | Fullstack Developer | Tech Explorer
+            </span>
           </p>
 
           {/* Profession Tags */}

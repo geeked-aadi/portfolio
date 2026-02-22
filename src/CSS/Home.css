@@ -31,7 +31,72 @@
 .home-info { flex: 1; min-width: 360px; max-width: 700px; display: flex; flex-direction: column; justify-content: center; }
 .home-title { font-size: 3rem; font-weight: 700; line-height: 1.2; margin-bottom: 0.4rem; }
 .home-name { background: linear-gradient(90deg, var(--accent), var(--accent-2), var(--accent)); -webkit-background-clip: text; color: transparent; background-size: 200%; display: inline-block; }
-.typing-effect { font-size: 1.2rem; color: rgba(255,255,255,0.85); margin-top: 0.4rem; max-width: 95%; display: inline-block; overflow: hidden; white-space: nowrap; border-right: 0.15em solid var(--accent); animation: typing 3.5s steps(40,end) forwards, blink .8s infinite; }
+.typing-effect {
+  font-size: 1.2rem;
+  color: rgba(255,255,255,0.85);
+  margin-top: 0.4rem;
+  max-width: 95%;
+  display: inline-block;
+}
+
+/* the inner element is animated from 0ch -> Nch (N = number of characters) */
+.typing-inner {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  vertical-align: middle;
+  width: 0ch;
+  /* --chars is provided inline from JSX */
+  /* cap the revealed width to the container so caret never moves off-screen */
+  max-width: 100%;
+  animation: typing 3.5s steps(var(--chars), end) forwards;
+  position: relative;
+  padding-right: 0.18em; /* small gap to ensure caret doesn't overlap last char */
+}
+
+/* caret sits at the right edge of the visible portion of the inner text */
+.typing-inner::after {
+  content: '';
+  position: absolute;
+  right: 0.04em;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0.12em;
+  height: 0.9em;
+  background: var(--accent);
+  animation: caret-blink .8s steps(1,end) infinite;
+  pointer-events: none;
+}
+
+/* hide caret after typing finishes */
+.typing-inner.typing-done::after {
+  display: none;
+  animation: none;
+}
+
+/* caret blink animation (opacity toggle) - self-contained so it works regardless of inline keyframes order */
+@keyframes caret-blink {
+  0% { opacity: 1; }
+  50% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+/* animate width in ch units to reveal characters */
+@keyframes typing {
+  from { width: 0ch; }
+  /* use min() so the target width never exceeds the container width */
+  to { width: min(calc(var(--chars) * 1ch), 100%); }
+}
+
+/* If the animated width hits 100% (text longer than container), ensure caret remains visible
+   by keeping the inner element left-aligned and clipped by the parent. */
+.typing-effect { overflow: hidden; }
+
+/* make sure the caret sits visually inside the text and doesn't get clipped */
+.typing-effect {
+  padding-right: 0.4em; /* increase space for caret */
+  line-height: 1.1; /* ensure caret height aligns with text */
+}
 
 /* Profession Tags */
 .profession-tags { display: flex; flex-wrap: wrap; gap: 0.8rem; margin-top: 1.4rem; }

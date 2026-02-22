@@ -12,12 +12,14 @@ const links = [
   { label: "Contact", to: "contact" },
 ];
 
-export default function Navbar() {
+export default function Navbar({ isMobile = false, onMobileSectionChange, activeSectionOverride }) {
   const [isOpen, setIsOpen] = useState(false);
   const [showButton, setShowButton] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
   const navRef = useRef(null);
   const linksRef = useRef(null);
+
+  const displayActiveSection = activeSectionOverride !== undefined ? activeSectionOverride : activeSection;
 
   // Check if links overflow nav width (to show hamburger)
   const checkOverflow = () => {
@@ -25,7 +27,20 @@ export default function Navbar() {
     setShowButton(linksRef.current.scrollWidth > navRef.current.offsetWidth);
   };
 
-  // Handle smooth scroll to section
+  const handleNavClick = (sectionId) => {
+    if (isMobile && onMobileSectionChange) {
+      onMobileSectionChange(sectionId);
+      setIsOpen(false);
+    } else {
+      const element = document.getElementById(sectionId);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+        setIsOpen(false);
+      }
+    }
+  };
+
+  // Handle smooth scroll to section (desktop)
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId);
     if (element) {
@@ -34,8 +49,14 @@ export default function Navbar() {
     }
   };
 
-  // Detect active section on scroll
+  // Detect active section on scroll (desktop) or use mobile active section
   useEffect(() => {
+    if (isMobile) {
+      checkOverflow();
+      window.addEventListener('resize', checkOverflow);
+      return () => window.removeEventListener('resize', checkOverflow);
+    }
+
     const handleScroll = () => {
       const sections = links.map(l => l.to);
       const scrollPosition = window.scrollY + 100;
@@ -60,7 +81,7 @@ export default function Navbar() {
       window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('resize', checkOverflow);
     };
-  }, []);
+  }, [isMobile]);
 
   return (
     <>
@@ -81,9 +102,9 @@ export default function Navbar() {
           fontFamily: "inherit",
         }}
       >
-        {/* Logo - scrolls to home */}
+        {/* Logo - scrolls to home / switches to home on mobile */}
         <motion.div
-          onClick={() => scrollToSection('home')}
+          onClick={() => (isMobile && onMobileSectionChange ? onMobileSectionChange('home') : scrollToSection('home'))}
           style={{ display: "flex", alignItems: "center", gap: 12, cursor: "pointer" }}
           whileHover={{ scale: 1.05 }}
         >
@@ -122,7 +143,7 @@ export default function Navbar() {
           {links.map((l) => (
             <motion.button
               key={l.to}
-              onClick={() => scrollToSection(l.to)}
+              onClick={() => handleNavClick(l.to)}
               whileHover={{
                 scale: 1.1,
                 color: "var(--accent)",
@@ -133,7 +154,7 @@ export default function Navbar() {
                 position: "relative",
                 fontSize: "0.95rem",
                 textDecoration: "none",
-                color: activeSection === l.to ? "var(--accent)" : "white",
+                color: displayActiveSection === l.to ? "var(--accent)" : "white",
                 fontWeight: 500,
                 background: "none",
                 border: "none",
@@ -145,7 +166,7 @@ export default function Navbar() {
               }}
             >
               {l.label}
-              {activeSection === l.to && (
+              {displayActiveSection === l.to && (
                 <motion.div
                   layoutId="underline"
                   initial={{ opacity: 0, y: 5 }}
@@ -227,9 +248,9 @@ export default function Navbar() {
             {links.map((l) => (
               <button
                 key={l.to}
-                onClick={() => scrollToSection(l.to)}
+                onClick={() => handleNavClick(l.to)}
                 style={{
-                  color: activeSection === l.to ? "var(--accent)" : "#fff",
+                  color: displayActiveSection === l.to ? "var(--accent)" : "#fff",
                   textDecoration: "none",
                   padding: "1rem 0",
                   width: "100%",
@@ -239,7 +260,7 @@ export default function Navbar() {
                   background: "none",
                   border: "none",
                   cursor: "pointer",
-                  fontWeight: activeSection === l.to ? "600" : "400",
+                  fontWeight: displayActiveSection === l.to ? "600" : "400",
                 }}
               >
                 {l.label}

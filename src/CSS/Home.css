@@ -67,3 +67,30 @@
   gap: 1.5rem;
   justify-content: center; /* ensures icons are centered */
 }
+
+/* Mobile: keep photo and content inside visible area (single-page view) */
+@media (max-width: 900px) {
+  .home-section {
+    justify-content: flex-start;
+    padding-top: 1.5rem;
+    min-height: 0;
+  }
+  .home-top {
+    flex-direction: column;
+    align-items: center;
+  }
+  .photo-container {
+    flex: 0 0 auto;
+  }
+  .photo-ring {
+    width: 200px;
+    height: 200px;
+  }
+  .photo-frame {
+    width: 180px;
+    height: 180px;
+  }
+  .home-info {
+    min-width: 0;
+  }
+}

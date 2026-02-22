@@ -131,12 +131,38 @@ body{
 .certs-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;margin-top:12px}
 .cert{padding:12px;border-radius:12px;background:linear-gradient(90deg, rgba(255,255,255,0.01), transparent);border:1px solid rgba(255,255,255,0.02)}
 
-/* responsive */
+/* responsive - mobile only: single page at a time, nav switches section */
 @media (max-width:900px){
   .hero-hero{flex-direction:column;align-items:center;text-align:center;padding:24px}
   .hero-photo{width:260px;height:260px}
   .gallery-grid{grid-template-columns:repeat(auto-fit,minmax(140px,1fr))}
   .skills-stage{height:360px}
+
+  .app.mobile-single-page-app {
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+  .app.mobile-single-page-app > main.mobile-single-page {
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+  .app.mobile-single-page-app > main.mobile-single-page > section.mobile-section-hidden {
+    display: none !important;
+  }
+  .app.mobile-single-page-app > main.mobile-single-page > section:not(.mobile-section-hidden) {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .app.mobile-single-page-app > .mobile-footer {
+    flex-shrink: 0;
+  }
 }
 
 /* 🌙 Contact Section Styling */

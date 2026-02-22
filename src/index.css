@@ -29,23 +29,33 @@ body{
   flex-direction:column;
   width: 100%;
 }
-.app > main {
+.app-body {
   width: 100%;
   display: flex;
   flex-direction: column;
+  flex: 1;
+  min-height: 0;
 }
-.app > main > section {
+.app .app-body > main {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.app .app-body > main > section {
   width: 100%;
   min-height: auto;
   display: flex;
   flex-direction: column;
 }
-.footer{
-  text-align:center;
-  padding:20px;
-  color:var(--muted);
-  font-size:13px;
+.footer {
+  position: static;
+  text-align: center;
+  padding: 20px;
+  color: var(--muted);
+  font-size: 13px;
   width: 100%;
+  flex-shrink: 0;
 }
 
 /* Navbar */
@@ -144,24 +154,24 @@ body{
     display: flex;
     flex-direction: column;
   }
-  .app.mobile-single-page-app > main.mobile-single-page {
-    flex: 1;
-    min-height: 0;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-  }
-  .app.mobile-single-page-app > main.mobile-single-page > section.mobile-section-hidden {
-    display: none !important;
-  }
-  .app.mobile-single-page-app > main.mobile-single-page > section:not(.mobile-section-hidden) {
+  .app.mobile-single-page-app > .mobile-app-body {
     flex: 1;
     min-height: 0;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
   }
-  .app.mobile-single-page-app > .mobile-footer {
-    flex-shrink: 0;
+  .app.mobile-single-page-app > .mobile-app-body > main.mobile-single-page {
+    display: flex;
+    flex-direction: column;
+    flex: 0 0 auto;
+    min-height: 0;
+  }
+  .app.mobile-single-page-app > .mobile-app-body > main.mobile-single-page > section.mobile-section-hidden {
+    display: none !important;
+  }
+  .app.mobile-single-page-app > .mobile-app-body > main.mobile-single-page > section:not(.mobile-section-hidden) {
+    flex: 0 0 auto;
+    min-height: 0;
   }
 }
 

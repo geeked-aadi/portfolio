@@ -96,3 +96,49 @@
 .edu-details {
   color: var(--text-muted);
 }
+
+/* About section: let content flow (desktop and mobile) */
+#about {
+  min-height: 0;
+  overflow: visible;
+}
+#about .about-me-inner {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Mobile: fix layout and overflow */
+@media (max-width: 900px) {
+  .about-me-inner {
+    justify-content: flex-start;
+    padding: 1.5rem 1rem;
+    min-height: 0;
+  }
+  .about-me-inner .about-content {
+    max-width: 100%;
+    padding: 1.5rem 1rem;
+    margin-top: 0;
+    box-sizing: border-box;
+    overflow: visible;
+  }
+  .about-me-inner .about-content h2 {
+    font-size: 1.5rem;
+  }
+  .about-me-inner .about-content > p {
+    font-size: 1rem;
+  }
+  .about-me-inner .about-content h3 {
+    font-size: 1.35rem;
+  }
+  .about-edu-card {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1rem 1.2rem;
+  }
+  .about-edu-card h4 {
+    font-size: 1.1rem;
+  }
+  .about-edu-card p {
+    font-size: 0.9rem;
+  }
+}

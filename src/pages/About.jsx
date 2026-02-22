@@ -1,10 +1,12 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { FaUniversity, FaSchool, FaGraduationCap } from "react-icons/fa";
+import "../CSS/About.css";
 
 const AboutMe = () => {
   return (
     <div
+      className="about-me-inner"
       style={{
         minHeight: "100vh",
         width: "100%",
@@ -19,6 +21,7 @@ const AboutMe = () => {
     >
       {/* --- About Me + Education Section --- */}
       <motion.div
+        className="about-content"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.4, duration: 0.8 }}
@@ -100,6 +103,7 @@ const AboutMe = () => {
           >
             {/* --- Education Card 1 --- */}
             <motion.div
+              className="about-edu-card"
               whileHover={{
                 scale: 1.02,
                 boxShadow: "0 0 25px rgba(0,255,200,0.15)",
@@ -145,6 +149,7 @@ const AboutMe = () => {
 
             {/* --- Education Card 2 --- */}
             <motion.div
+              className="about-edu-card"
               whileHover={{
                 scale: 1.02,
                 boxShadow: "0 0 25px rgba(0,255,200,0.15)",
@@ -189,6 +194,7 @@ const AboutMe = () => {
 
             {/* --- Education Card 3 --- */}
             <motion.div
+              className="about-edu-card"
               whileHover={{
                 scale: 1.02,
                 boxShadow: "0 0 25px rgba(0,255,200,0.15)",

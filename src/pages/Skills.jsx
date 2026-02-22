@@ -46,6 +46,7 @@ const ROWS = [
 
 export default function Skills() {
   const stageRef = useRef();
+  const dragRef = useRef({ el: null, offsetX: 0, offsetY: 0 });
 
   useEffect(() => {
     const stage = stageRef.current;
@@ -73,10 +74,14 @@ export default function Skills() {
       placed.push({ x, y, size });
       circle.style.left = `${x}px`;
       circle.style.top = `${y}px`;
+      // remember the 'home' coordinates so we can snap back to them
+      circle._homeX = x;
+      circle._homeY = y;
 
       const dx = (Math.random() - 0.5) * 100;
       const dy = (Math.random() - 0.5) * 100;
-      circle.animate(
+      // store the floating animation so we can pause/resume during drag
+      const anim = circle.animate(
         [{ transform: "translate(0, 0)" }, { transform: `translate(${dx}px, ${dy}px)` }],
         {
           duration: 5000 + Math.random() * 2000,
@@ -85,8 +90,75 @@ export default function Skills() {
           easing: "ease-in-out",
         }
       );
+      circle._floatAnimation = anim;
     });
   }, []);
+
+  // Pointer-based drag handlers
+  const onPointerDown = (e) => {
+    const el = e.currentTarget;
+    if (!el || !stageRef.current) return;
+    try {
+      el.setPointerCapture && el.setPointerCapture(e.pointerId);
+    } catch (err) {}
+    const elRect = el.getBoundingClientRect();
+    const stageRect = stageRef.current.getBoundingClientRect();
+    const offsetX = e.clientX - elRect.left;
+    const offsetY = e.clientY - elRect.top;
+    // pause floating animation if present
+    if (el._floatAnimation && typeof el._floatAnimation.pause === "function") el._floatAnimation.pause();
+    // store home position from when the component placed the circle
+    const homeX = typeof el._homeX === "number" ? el._homeX : parseFloat(el.style.left || "0");
+    const homeY = typeof el._homeY === "number" ? el._homeY : parseFloat(el.style.top || "0");
+    // ensure transform origin and disable gesture defaults
+    el.style.transition = "transform 0s";
+    dragRef.current = { el, offsetX, offsetY, homeX, homeY };
+  };
+
+  const onPointerMove = (e) => {
+    const d = dragRef.current;
+    if (!d.el || !stageRef.current) return;
+    const stageRect = stageRef.current.getBoundingClientRect();
+    // compute translation relative to home position
+    let dx = e.clientX - stageRect.left - d.homeX - d.offsetX;
+    let dy = e.clientY - stageRect.top - d.homeY - d.offsetY;
+    // clamp so the bubble doesn't go out of bounds
+    const minX = -d.homeX;
+    const minY = -d.homeY;
+    const maxX = stageRect.width - d.homeX - d.el.offsetWidth;
+    const maxY = stageRect.height - d.homeY - d.el.offsetHeight;
+    dx = Math.max(minX, Math.min(dx, maxX));
+    dy = Math.max(minY, Math.min(dy, maxY));
+    d.el.style.transform = `translate(${dx}px, ${dy}px)`;
+    // store last translation so pointerUp can animate from it
+    d.lastDx = dx;
+    d.lastDy = dy;
+  };
+
+  const onPointerUp = (e) => {
+    const d = dragRef.current;
+    if (!d.el) return;
+    try {
+      d.el.releasePointerCapture && d.el.releasePointerCapture(e.pointerId);
+    } catch (err) {}
+    // animate transform back to identity (snap back to home)
+    const startTransform = getComputedStyle(d.el).transform || "none";
+    const from = startTransform === "none" ? "translate(0px, 0px)" : startTransform;
+    const anim = d.el.animate([
+      { transform: from },
+      { transform: "translate(0px, 0px)" }
+    ], { duration: 360, easing: "cubic-bezier(.22,.9,.31,1)" });
+    anim.onfinish = () => {
+      d.el.style.transform = "translate(0px, 0px)";
+      // resume floating animation
+      if (d.el._floatAnimation && typeof d.el._floatAnimation.play === "function") d.el._floatAnimation.play();
+    };
+    anim.oncancel = () => {
+      if (d.el._floatAnimation && typeof d.el._floatAnimation.play === "function") d.el._floatAnimation.play();
+    };
+
+    dragRef.current = { el: null, offsetX: 0, offsetY: 0 };
+  };
 
   return (
     <section className="skills-container" id="skills">
@@ -125,6 +197,9 @@ export default function Skills() {
           <motion.div
             key={s.name}
             className="skill-circle"
+            onPointerDown={onPointerDown}
+            onPointerMove={onPointerMove}
+            onPointerUp={onPointerUp}
             initial={{ opacity: 0, scale: 0 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: i * 0.08, duration: 0.6, ease: "easeOut" }}

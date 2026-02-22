@@ -59,6 +59,17 @@
   transition: transform 0.22s ease, box-shadow 0.22s ease;
 }
 
+/* allow pointer dragging (disable default touch gestures) */
+.skill-circle {
+  touch-action: none;
+  user-select: none;
+}
+
+/* hint to browser that transform will change frequently */
+.skill-circle {
+  will-change: transform;
+}
+
 .skill-circle img {
   width: 28px;             /* smaller icon */
   height: 28px;

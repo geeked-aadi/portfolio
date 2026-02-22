@@ -24,6 +24,11 @@ export default function Navbar({ isMobile = false, onMobileSectionChange, active
   // Check if links overflow nav width (to show hamburger)
   const checkOverflow = () => {
     if (!navRef.current || !linksRef.current) return;
+    // always show button on very small screens
+    if (window.innerWidth <= 600) {
+      setShowButton(true);
+      return;
+    }
     setShowButton(linksRef.current.scrollWidth > navRef.current.offsetWidth);
   };
 
@@ -87,6 +92,7 @@ export default function Navbar({ isMobile = false, onMobileSectionChange, active
     <>
       {/* --- Navbar --- */}
       <nav
+        className="nav"
         ref={navRef}
         style={{
           position: "sticky",
@@ -194,9 +200,10 @@ export default function Navbar({ isMobile = false, onMobileSectionChange, active
                 background: "none",
                 border: "none",
                 color: "#fff",
-                fontSize: "1.8rem",
+                fontSize: "1.6rem",
                 cursor: "pointer",
                 zIndex: 10000,
+                padding: "4px",
               }}
               onClick={() => setIsOpen(!isOpen)}
             >

@@ -159,3 +159,158 @@
     min-width: 0;
   }
 }
+
+/* Aggressive mobile redesign for very small screens (<=600px) */
+@media (max-width: 600px) {
+  html, body { overflow-x: hidden; }
+  
+  /* Main container - ultra compact */
+  .home-section { 
+    padding: 10px 8px 1rem; 
+    gap: 0.8rem; 
+    min-height: auto;
+  }
+  .home-top { 
+    width: 100%; 
+    gap: 0.8rem; 
+    max-width: 100% !important;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  /* Show photo but make it compact */
+  .photo-container { 
+    flex: 0 0 auto !important; 
+    width: 90px;
+    height: 90px;
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 0;
+  }
+  .photo-ring { 
+    width: 85px; 
+    height: 85px;
+    opacity: 0.4;
+  }
+  .photo-frame { 
+    width: 75px; 
+    height: 75px;
+    border-width: 2px;
+  }
+  .profile-photo {
+    width: 100%;
+    height: 100%;
+  }
+  
+  /* Info section - optimized for mobile */
+  .home-info { 
+    min-width: auto; 
+    max-width: 100%; 
+    width: 100%; 
+    text-align: center; 
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Title - compressed */
+  .home-title { 
+    font-size: 1.4rem; 
+    margin-bottom: 0.2rem; 
+    font-weight: 700;
+    line-height: 1;
+  }
+  .home-name { 
+    font-size: 1.4rem; 
+  }
+  
+  /* Typing effect - compact */
+  .typing-effect { 
+    max-width: 100%; 
+    font-size: 0.8rem; 
+    margin-top: 0.3rem; 
+    color: rgba(255,255,255,0.8);
+    line-height: 1.3;
+    padding-right: 0.2em;
+  }
+  .typing-inner { 
+    font-size: 0.8rem;
+  }
+  .typing-inner::after {
+    height: 0.8em;
+  }
+  
+  /* Profession tags - optimized vertical stack */
+  .profession-tags { 
+    gap: 0.4rem; 
+    margin-top: 0.6rem; 
+    justify-content: center; 
+    flex-direction: column; 
+    width: 100%;
+  }
+  .profession-tag { 
+    padding: 6px 12px; 
+    font-size: 0.75rem; 
+    width: 100%; 
+    text-align: center; 
+    white-space: nowrap; 
+    overflow: hidden; 
+    text-overflow: ellipsis;
+    border-radius: 15px;
+    background: rgba(0,255,200,0.08) !important;
+  }
+  
+  /* Info cards - horizontal layout for compact display */
+  .info-cards { 
+    gap: 0.5rem; 
+    margin-top: 0.8rem; 
+    flex-direction: column; 
+    flex-wrap: nowrap; 
+    justify-content: center; 
+    width: 100%;
+  }
+  .info-card { 
+    min-width: 0; 
+    flex: 1 1 100%; 
+    padding: 8px 10px; 
+    font-size: 0.75rem;
+    background: rgba(255,255,255,0.03) !important;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: none;
+  }
+  .info-card strong {
+    font-size: 0.75rem;
+    display: block;
+    margin-bottom: 2px;
+  }
+  .info-card p { 
+    font-size: 0.7rem; 
+    margin: 0; 
+    word-wrap: break-word; 
+    overflow-wrap: break-word; 
+    white-space: normal;
+    color: rgba(255,255,255,0.65);
+  }
+  
+  /* Quick links - ultra compact */
+  .quick-links { 
+    margin-top: 1rem; 
+    gap: 0.5rem;
+    width: 100%;
+  }
+  .quick-links-title { 
+    font-size: 0.95rem; 
+    margin-bottom: 0.4rem;
+    font-weight: 600;
+  }
+  .quick-links-list { 
+    gap: 10px;
+    width: 100%;
+  }
+  .quick-link-img { 
+    width: 35px; 
+    height: 35px;
+    filter: brightness(0.85);
+  }
+}

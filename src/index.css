@@ -175,6 +175,18 @@ body{
   }
 }
 
+/* Extra mobile fixes for <=600px to prevent overflow */
+@media (max-width: 600px) {
+  html, body { width: 100%; overflow-x: hidden; }
+  .container { width: 100%; padding: 0 10px !important; margin: 12px auto !important; }
+  .card { padding: 10px !important; }
+  .nav { padding: 8px 10px !important; }
+  .skills-stage { width: 100% !important; max-width: 100% !important; overflow: hidden !important; padding: 0 !important; }
+  .skill-circle { width: 52px !important; height: 52px !important; }
+  .skill-circle img { width: 20px !important; height: 20px !important; }
+  .skill-circle span { font-size: 9px !important; }
+}
+
 /* 🌙 Contact Section Styling */
 .contact-input {
   width: 100%;

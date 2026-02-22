@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import "../CSS/Home.css"
 import '../index.css' 
@@ -15,6 +15,15 @@ import facebookLogo from '../../public/facebook.png'
 
 export default function Home() {
   const [typingDone, setTypingDone] = useState(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 600);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 600);
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
   const professions = [
   'Computer Science Engineer',
   'Problem Solver',
@@ -51,8 +60,7 @@ export default function Home() {
             className="photo-ring"
           />
           <motion.div
-            animate={{ y: [0, -8, 0] }}
-            transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
+            animate={{ y: 0 }}
             className="photo-frame"
           >
             <motion.img

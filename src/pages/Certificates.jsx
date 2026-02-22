@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import "../CSS/Certificates.css";
 
 //  Certificates data (added URLs for View button)
 const CERTS = {
@@ -88,15 +89,7 @@ export default function Certificates() {
         </div>
 
         {/* Certificates Grid */}
-        <div
-          className="certs-grid"
-          style={{
-            marginTop: 28,
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
-            gap: 20,
-          }}
-        >
+        <div className="certs-grid">
           <AnimatePresence mode="wait">
             {CERTS[tab].map((c, idx) => (
               <motion.div
@@ -178,26 +171,16 @@ export default function Certificates() {
             onClick={() => setSelectedCert(null)}
           >
             <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                gap: "12px",
-                alignItems: "center",
-              }}
+              className="cert-modal-content"
               onClick={(e) => e.stopPropagation()}
             >
               <motion.img
                 src={selectedCert.img}
                 alt={selectedCert.title}
+                className="cert-modal-img"
                 initial={{ scale: 0.8 }}
                 animate={{ scale: 1 }}
                 exit={{ scale: 0.8 }}
-                style={{
-                  maxWidth: "90%",
-                  maxHeight: "75%",
-                  borderRadius: 10,
-                  boxShadow: "0 0 25px rgba(255,255,255,0.2)",
-                }}
               />
               {selectedCert.link && selectedCert.link.startsWith("http") && (
                 <a

@@ -50,8 +50,21 @@
 .certs-grid {
   margin-top: 28px;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 20px;
+  /* Desktop: columns by screen size */
+  grid-template-columns: repeat(1, 1fr);
+}
+
+@media (min-width: 520px) {
+  .certs-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .certs-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 .cert.card {
@@ -100,11 +113,26 @@
   justify-content: center;
   align-items: center;
   z-index: 1000;
+  padding: 20px;
+  box-sizing: border-box;
 }
 
-.modal img {
-  max-width: 90%;
-  max-height: 85%;
+.cert-modal-content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+  max-width: min(95vw, 900px);
+  max-height: 90vh;
+  overflow: auto;
+}
+
+.cert-modal-img {
+  max-width: min(90vw, 850px);
+  max-height: 70vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
   border-radius: 10px;
   box-shadow: 0 0 25px rgba(255,255,255,0.2);
 }

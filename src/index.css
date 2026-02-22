@@ -14,9 +14,7 @@ html,body,#root{
 }
 body{
   margin:0;
-  background: radial-gradient(800px 500px at 10% 10%, rgba(124,58,237,0.08), transparent 10%),
-              radial-gradient(700px 400px at 90% 90%, rgba(255,92,161,0.04), transparent 10%),
-              var(--bg);
+  background: linear-gradient(135deg, #0a0e27 0%, #1a1a2e 100%);
   color:#e6eef8;
   -webkit-font-smoothing:antialiased;
   -moz-osx-font-smoothing:grayscale;
